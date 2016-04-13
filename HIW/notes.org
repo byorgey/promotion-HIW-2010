@@ -1,0 +1,90 @@
+
+Planning for Haskell Implementor's Workshop talk
+
+20 min + 10 for questions.
+
+* Abstract
+
+  Title: Typed type-level functional programming in GHC
+
+  Type-level programming in Haskell, whether using functional
+  dependencies or type families, is undeniably useful and is becoming
+  increasingly common.  However, such programming is essentially
+  untyped.  Why should we give up the strong type safety we know and
+  love just because we are programming at the type level?
+
+  Taking a cue from the Strathclyde Haskell Enhancement (SHE), we are
+  extending GHC to enable typed programming at the type level, by
+  allowing the automatic lifting of types to kinds and their data
+  constructors to type constructors. SHE already supports this style
+  of programming with a preprocessing phase, but direct compiler
+  support will enable better error messages and expose opportunities
+  for additional features.  In this talk I will demonstrate the
+  usefulness of this extension, explain some of the challenges we have
+  faced in both theory and implementation, and mention some avenues
+  for future work.
+
+* Demonstrate usefulness
+
+  Reuse example from blog post with LOL =)
+
+  check blog comments etc for other possible interesting examples
+
+* Theory
+
+  - Used to have terms, types, and kinds
+  - Now we just have terms and typekinds
+  - ... with * : *
+  - The tricky bit is coercions:
+    + now need to be able to apply coercions to types as well as terms
+    + need to be able to coerce between binders with different
+      kinds, which means introducing bifurcated contexts!
+    + UNLESS we disallow lifting GADTs.
+    + ...which isn't as straightforward as you might think!
+
+* Implementation
+
+  - Currently refactoring to separate coercions + types.
+  - Then plan to start on implementation.
+
+* Avenues for future work
+
+  See blog comments etc. for some things to put here?
+
+  - allow lifting GADTs?
+  - closed type functions?
+  - closed type classes?
+  - proof search, recursion, etc?
+  - auto-lifting value-level functions to the type level?
+
+* Notes from practice talk to Joyia
+
+  Better intro + big picture sort of stuff
+* Notes from practice talk @ Penn
+
+  + mention phase separation
+  + Kind polymorphism
+  + Decidable type inference in core language, not in source language
+    - how does type inference work?
+  + S n Z ~ n  -- proof search + induction
+  + get a temperature reading -- do people WANT lifting GADTs?
+  + GADT restriction / newtype deriving stuff sort of a black box
+  + mention Conor + SHE (future work?)
+  + delta conversion
+  + give more background on equality stuff?  all proofs have to be
+    explicit and syntax-directed
+  + better idea of what goes wrong w/ current system + how adding more
+    kinds helps
+  + add :: * annotations to m and n in Plus
+
+  + what should people get out? (theory section, implementation section)
+
+  + future work: lifting type classes?
+  + surface syntax?
+  + note: all current programs continue to work
+
+  + add slide titles + some color
+  + leave information up longer? focus attention with color?
+
+  + say explicitly this is a work in progress, at the beginning
+
